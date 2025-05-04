@@ -1,19 +1,18 @@
 INF = 9999999
 
-# Take user input for number of vertices
+
 V = int(input("Enter number of vertices: "))
 
-# Create the graph as an adjacency matrix
+
 print("Enter the adjacency matrix (use 0 if no edge):")
 G = []
 for i in range(V):
     row = list(map(int, input(f"Row {i+1}: ").split()))
     G.append(row)
 
-# Track selected vertices
 selected = [False] * V
 no_edge = 0
-selected[0] = True  # Start from the first vertex
+selected[0] = True  
 
 print("\nEdge : Weight")
 while no_edge < V - 1:
