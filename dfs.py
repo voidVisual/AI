@@ -1,0 +1,29 @@
+# Recursive DFS function
+def dfs(graph, vertex, visited):
+    visited.add(vertex)
+    print(vertex, end=' ')
+    for neighbor in graph[vertex]:
+        if neighbor not in visited:
+            dfs(graph, neighbor, visited)
+ 
+# Take input
+vertices = int(input("Enter number of vertices: "))
+edges = int(input("Enter number of edges: "))
+
+# Initialize graph
+graph = {i: [] for i in range(vertices)}
+
+print("Enter edges (format: src dest):")
+for _ in range(edges):
+    u, v = map(int, input().split())
+    graph[u].append(v)
+    graph[v].append(u)  # Because the graph is undirected
+
+# Get starting node
+start = int(input("Enter starting vertex: "))
+
+# Perform DFS
+print("DFS Traversal:")
+visited = set()
+dfs(graph, start, visited)
+
