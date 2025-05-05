@@ -1,6 +1,5 @@
 def printJobScheduling(arr, t):
     n = len(arr)
-   
     for i in range(n):
         for j in range(n - 1 - i):
             if arr[j][2] < arr[j + 1][2]:
@@ -9,26 +8,28 @@ def printJobScheduling(arr, t):
     result = [False] * t 
     job = ['-1'] * t
 
- 
-    for i in range(len(arr)):
-       
+    for i in range(n):
         for j in range(min(t - 1, arr[i][1] - 1), -1, -1):
-            if result[j] is False:
-                
+            if not result[j]:
                 result[j] = True
                 job[j] = arr[i][0]
                 break
 
-    print(job)
+    print("\nJob sequence for maximum profit:")
+    print(' -> '.join([j for j in job if j != '-1']))
+
 
 if __name__ == '__main__':
-    arr = [['a', 2, 100],
-           ['b', 1, 19],
-           ['c', 2, 27],
-           ['d', 1, 25],
-           ['e', 3, 15]]
+    n = int(input("Enter number of jobs: "))
+    arr = []
+    for i in range(n):
+        name = input(f"\nEnter Job {i+1} name: ")
+        deadline = int(input("Enter deadline: "))
+        profit = int(input("Enter profit: "))
+        arr.append([name, deadline, profit])
 
-    print("Following is the maximum profit sequence of jobs")
-    printJobScheduling(arr, 3)
+    t = int(input("\nEnter number of available time slots: "))
 
+    print("\nFollowing is the maximum profit sequence of jobs:")
+    printJobScheduling(arr, t)
 
