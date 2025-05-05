@@ -1,6 +1,6 @@
 import random
 
-# Define a class for the chatbot
+
 class SimpleChatbot:
     def __init__(self):
         self.responses = {
@@ -22,7 +22,7 @@ class SimpleChatbot:
         else:
             return random.choice(self.responses["default"])
 
-# Main function to interact with the chatbot
+
 def chatbot_interaction():
     chatbot = SimpleChatbot()
     print("Chatbot: Hello! How can I assist you today?")
@@ -36,6 +36,6 @@ def chatbot_interaction():
             response = chatbot.get_response(user_input)
             print(f"Chatbot: {response}")
 
-# Run the chatbot
+
 if __name__ == "__main__":
     chatbot_interaction()
