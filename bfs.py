@@ -27,9 +27,9 @@ for _ in range(edges):
     graph[u].append(v)
     graph[v].append(u)  
 
-# Get starting node
+
 start = int(input("Enter starting vertex: "))
 
-# Perform BFS
+
 print("BFS Traversal:")
 bfs(graph, start)
