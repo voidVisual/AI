@@ -1,35 +1,34 @@
-def printJobScheduling(arr, t):
-    n = len(arr)
-    for i in range(n):
-        for j in range(n - 1 - i):
-            if arr[j][2] < arr[j + 1][2]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+n = int(input("Enter the number of jobs: "))
 
-    result = [False] * t 
-    job = ['-1'] * t
+profit = []
+jobs = []
+deadline = []
 
-    for i in range(n):
-        for j in range(min(t - 1, arr[i][1] - 1), -1, -1):
-            if not result[j]:
-                result[j] = True
-                job[j] = arr[i][0]
-                break
+for i in range(n):
+    job = input(f"Enter job name for job {i + 1}: ")
+    jobs.append(job)
+    p = int(input(f"Enter profit for {job}: "))
+    profit.append(p)
+    d = int(input(f"Enter deadline for {job}: "))
+    deadline.append(d)
 
-    print("\nJob sequence for maximum profit:")
-    print(' -> '.join([j for j in job if j != '-1']))
+profitNJobs = list(zip(profit, jobs, deadline))
+profitNJobs = sorted(profitNJobs, key=lambda x: x[0], reverse=True)
+
+slot = [0] * (max(deadline) + 1)  
+profit = 0
+ans = ['null'] * (max(deadline) + 1)
+
+for i in range(len(jobs)):
+    job = profitNJobs[i]
+    
+    for j in range(job[2], 0, -1):
+        if slot[j] == 0:
+            ans[j] = job[1]
+            profit += job[0]
+            slot[j] = 1
+            break
 
 
-if __name__ == '__main__':
-    n = int(input("Enter number of jobs: "))
-    arr = []
-    for i in range(n):
-        name = input(f"\nEnter Job {i+1} name: ")
-        deadline = int(input("Enter deadline: "))
-        profit = int(input("Enter profit: "))
-        arr.append([name, deadline, profit])
-
-    t = int(input("\nEnter number of available time slots: "))
-
-    print("\nFollowing is the maximum profit sequence of jobs:")
-    printJobScheduling(arr, t)
-
+print("Jobs scheduled:", [job for job in ans if job != 'null'])
+print("Total profit:", profit)
