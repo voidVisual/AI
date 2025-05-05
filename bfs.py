@@ -1,6 +1,6 @@
 from collections import deque
 
-# Function to perform BFS
+
 def bfs(graph, start):
     visited = set()
     queue = deque([start])
@@ -14,18 +14,18 @@ def bfs(graph, start):
                 if neighbor not in visited:
                     queue.append(neighbor)
 
-# Take input
+
 vertices = int(input("Enter number of vertices: "))
 edges = int(input("Enter number of edges: "))
 
-# Initialize graph
+
 graph = {i: [] for i in range(vertices)}
 
 print("Enter edges (format: src dest):")
 for _ in range(edges):
     u, v = map(int, input().split())
     graph[u].append(v)
-    graph[v].append(u)  # Because the graph is undirected
+    graph[v].append(u)  
 
 # Get starting node
 start = int(input("Enter starting vertex: "))
