@@ -2,7 +2,7 @@ import heapq
 
 def a_star_search(start, goal, graph, heuristic):
     open_list = []
-    heapq.heappush(open_list, (0 + heuristic[start], 0, start, [start]))  # (f, g, current, path)
+    heapq.heappush(open_list, (0 + heuristic[start], 0, start, [start]))  
     visited = set()
 
     while open_list:
@@ -24,7 +24,6 @@ def a_star_search(start, goal, graph, heuristic):
     print("Path does not exist!")
     return None
 
-# Example graph and heuristic (Romania map style)
 graph = {
     'A': [('B', 2), ('E', 3)],
     'B': [('A', 2), ('C', 1), ('G', 9)],
